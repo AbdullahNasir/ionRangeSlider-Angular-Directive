@@ -8,7 +8,7 @@ How To Use
 
 Specify 'ionSlider' as the dependency of your module.
 
-In your html use <ionslider></ionslider>.
+In your html use <pre><ionslider></ionslider></pre>.
 
 Following attributes can be used inside <ionslider></ionslider> tag:
 
@@ -29,9 +29,9 @@ Value Change Events
 -------------------
 
 You can also set the change event in the tag
-
+<pre>
 <ionslider on-change='change()'></ionslider>
-
+</pre>
 In your controller
 
 $scope.change = function(sliderObj){
