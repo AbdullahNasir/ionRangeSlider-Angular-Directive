@@ -21,7 +21,7 @@ Following attributes can be used inside <ionslider></ionslider> tag:
 	prefix,
 	max-postfix,
 	prettify,
-	has-grid,
+	grid,
 	grid-margin,
 	postfix,
 	step,
@@ -62,7 +62,7 @@ Example HTML
 
 ```html
  <ionslider type="single"
-        has-grid=true
+        grid=true
         min="model.min"
         max="model.max"
         from="model.currentValue"
