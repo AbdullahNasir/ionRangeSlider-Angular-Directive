@@ -1,7 +1,7 @@
 ionRangeSlider-Angular-Directive
 ================================
 
-Angular.js directive for popular jquery plugin ionRangeSlider
+Angular.js directive for popular jquery plugin ionRangeSlider with updatable attributes
 
 How To Use
 ==========
@@ -35,11 +35,11 @@ Value Change Events
 
 You can also set the change event in the tag
 ```html
-<ionslider on-change='change()'></ionslider>
+<ionslider on-change='rangeChangeCallback'></ionslider>
 ```
 In your controller
 
-$scope.change = function(sliderObj){
+$scope.rangeChangeCallback = function(sliderObj){
 	var changedValue = sliderObj.from;
 }
 
@@ -49,11 +49,11 @@ Drag Finish Events
 To get notified when the User releases the handle, add a event handler function like this:
 
 ```html
-<ionslider on-finish='finish()'></ionslider>
+<ionslider on-finish='rangeFinishCallback'></ionslider>
 ```
 In your controller
 
-$scope.finish = function(sliderObj){
+$scope.rangeFinishCallback = function(sliderObj){
 	var newValue = sliderObj.from;
 }
 
