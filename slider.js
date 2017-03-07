@@ -2,6 +2,8 @@
  * Created by Abdullah on 9/19/14.
  *
  * Modified and enhanced by Juergen Wahlmann on 3/5/15
+ *
+ * Updated by Danil Ovsyannikov on 7/3/2017
  */
 
 var app = angular.module('ionSlider',['ngRoute']);
@@ -9,8 +11,9 @@ var app = angular.module('ionSlider',['ngRoute']);
 
 app.directive('ionslider',function($timeout){
     return{
-        restrict:'E',
-        scope:{min:'=',
+        restrict:'C',
+        scope:{
+            min:'=',
             max:'=',
             type:'@',
             prefix:'@',
@@ -23,12 +26,15 @@ app.directive('ionslider',function($timeout){
             hideMinMax:'@',
             hideFromTo:'@',
             from:'=',
+            to: '=',
             disable:'=',
             onChange:'=',
-            onFinish:'='
+            onFinish:'=',
+            onStart:'=',
+            onUpdate:'='
 
         },
-        template:'<div></div>',
+        template:'<input>',
         replace:true,
         link:function($scope,$element,attrs){
             (function init(){
@@ -46,9 +52,12 @@ app.directive('ionslider',function($timeout){
                     hideMinMax:$scope.hideMinMax,
                     hideFromTo:$scope.hideFromTo,
                     from:$scope.from,
+                    to: $scope.to,
                     disable:$scope.disable,
                     onChange:$scope.onChange,
-                    onFinish:$scope.onFinish
+                    onFinish:$scope.onFinish || onFinish,
+                    onStart:$scope.onStart,
+                    onUpdate:$scope.onUpdate
                 });
             })();
             $scope.$watch('min', function(value) {
@@ -60,9 +69,17 @@ app.directive('ionslider',function($timeout){
             $scope.$watch('from', function(value) {
                 $timeout(function(){ $element.data("ionRangeSlider").update({from: value}); });
             });
+            $scope.$watch('to', function (value) {
+                $timeout(function () { $element.data("ionRangeSlider").update({ to: value }); });
+            });
             $scope.$watch('disable', function(value) {
                 $timeout(function(){ $element.data("ionRangeSlider").update({disable: value}); });
             });
+            function onFinish(obj)
+            {
+                $scope.from = obj.from;
+                $scope.to = obj.to;
+            }
         }
     }
 });
