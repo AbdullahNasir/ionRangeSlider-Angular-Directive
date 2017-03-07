@@ -11,7 +11,7 @@ var app = angular.module('ionSlider',['ngRoute']);
 
 app.directive('ionslider',function($timeout){
     return{
-        restrict:'C',
+        restrict:'EC',
         scope:{
             min:'=',
             max:'=',
